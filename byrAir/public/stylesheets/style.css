@@ -1,8 +1,129 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html, body, h1, h2, h3, p, form, ul, ol, li, dl, dt, dd, form {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+html, body {
+    font: 12px/1 "Microsoft Yahei","微软雅黑","黑体","SimHei",Arial,sans-serif;
+    color: #2E2E2E;
+    height: 100%;
 }
 
-a {
-  color: #00B7FF;
+.container {
+    display: -webkit-flex;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+}
+
+.nav{
+    flex: 1;
+    background-color: #191818;
+}
+.note{
+    flex: 2.5;
+    /*background-color: #fff;*/
+}
+.content {
+    flex: 4;
+    /*background-color: #d3d3d3;*/
+}
+.container h3{
+    font-size: 28px;
+    text-align: center;
+    padding: 60px 0;
+    font-weight: 400;
+}
+
+/********************左侧nav栏**************************/
+.nav {
+    color: #666565;
+}
+.nav-list {
+    font-size: 15px;
+    font-weight: bold;
+}
+.nav-list li {
+    padding: 10px 15px;
+}
+.nav-active,.nav-list li:hover {
+    background-color: #313030;
+    color: #fff;
+    cursor: pointer;
+}
+
+/********************中间笔记栏**************************/
+.note-head {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+}
+.note h3 {
+    display: inline-flex;
+    padding-left: 50px;
+    flex: 3;
+    color: #c6c6c6;
+}
+.note-create {
+    background-color: #ea544a;
+    color: #fff;
+    line-height: 28px;
+    border-radius: 3px;
+    margin: 0 20px;
+    display: inline-flex;
+    padding: 5px 10px;
+    flex: 1;
+    justify-content: center;
+    cursor: pointer;
+}
+.note-list {
+    overflow: auto;
+    height: 450px;
+}
+.note-wrap {
+    margin: 5px 15px;
+    padding:5px;
+}
+.note-active, .note-wrap:hover{
+    border: 1px solid #67b8e4;
+    padding:4px;
+    cursor:pointer;
+}
+.note-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666666;
+    padding: 5px;
+}
+.note-content{
+    position: relative;
+    color: #797979;
+    padding: 5px;
+    font-size: 13px;
+    line-height: 18px;
+    height:48px;
+    overflow:hidden;
+}
+.note-content:after {
+    content:"...";
+    font-weight:bold;
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding:0 20px 1px 45px;
+    background:url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png) repeat-y;
+}
+/********************右侧显示栏**************************/
+.content h3{
+    background-color: #ea544a;
+    color: #fff;
+}
+.content-wrap {
+    padding: 20px;
+    overflow: auto;
+    font-size: 13px;
+    line-height: 18px;
+    color: #797979;
+    height: 410px;
 }
