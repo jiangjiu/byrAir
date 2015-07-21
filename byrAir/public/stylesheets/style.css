@@ -43,6 +43,8 @@ html, body {
 .nav-list {
     font-size: 15px;
     font-weight: bold;
+    overflow: auto;
+    height: 510px;
 }
 .nav-list li {
     padding: 10px 15px;
