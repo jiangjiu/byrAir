@@ -15,6 +15,7 @@ html, body {
     height: 100%;
     width: 100%;
     flex-direction: row;
+    background-color:#EEEEEE;
 }
 
 .nav{
@@ -22,23 +23,26 @@ html, body {
     background-color: #191818;
 }
 .note{
+    margin-left:15px;
     flex: 2.5;
-    /*background-color: #fff;*/
+    background-color: #fff;
 }
 .content {
+    margin-left:15px;
     flex: 4;
-    /*background-color: #d3d3d3;*/
+    background-color: #fff;
 }
 .container h3{
     font-size: 28px;
     text-align: center;
-    padding: 60px 0;
+    padding: 90px 0;
     font-weight: 400;
 }
 
 /********************左侧nav栏**************************/
 .nav {
     color: #666565;
+    position:relative;;
 }
 .nav-list {
     font-size: 15px;
@@ -52,7 +56,27 @@ html, body {
     color: #fff;
     cursor: pointer;
 }
+.type-create{
+    width:28px;
+    height:28px;
+    margin-top:30px;
+    margin-left: 70px;
+    color:#666565;
+    font-size:30px;
+    line-height:25px;
+    text-align: center;
+    border:2px solid #666565;
+    border-radius:50%;
+}
+.type-del{
+    display:inline-block;
+    width:53px;
+    height:53px;
+    margin-top:150px;
+    margin-left: 90px;
+    background:url("../images/del.png") no-repeat left center;
 
+}
 /********************中间笔记栏**************************/
 .note-head {
     display: -webkit-flex;
@@ -66,16 +90,17 @@ html, body {
     color: #c6c6c6;
 }
 .note-create {
-    background-color: #ea544a;
     color: #fff;
     line-height: 28px;
+    text-align:center;
     border-radius: 3px;
     margin: 0 20px;
-    display: inline-flex;
-    padding: 5px 10px;
+    display: inline-block;
+    padding: 5px 20px 5px 50px;
     flex: 1;
     justify-content: center;
     cursor: pointer;
+    background: #da3610 url(../images/pen.png) no-repeat 20px center;
 }
 .note-list {
     overflow: auto;
@@ -116,7 +141,7 @@ html, body {
 }
 /********************右侧显示栏**************************/
 .content h3{
-    background-color: #ea544a;
+    background-color: #da3610;
     color: #fff;
 }
 .content-wrap {
