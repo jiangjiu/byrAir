@@ -11,14 +11,16 @@
 <div class="container">
     <div class="nav">
         <h3>笔记本</h3>
-        <ul class="nav-list">
-            <li class="nav-active">设计（<span>78</span>）</li>
-            <li>呵呵（<span>2</span>）</li>
-            <li>哈哈（<span>22</span>）</li>
-            <li>哈哈（<span>12</span>）</li>
-            <li>哈哈（<span>234</span>）</li>
-            <li>哈哈（<span>4</span>）</li>
-        </ul>
+
+        <div class="cate-box"></div>
+        <!--<ul class="nav-list">-->
+            <!--<li class="nav-active">设计（<span>78</span>）</li>-->
+            <!--<li>呵呵（<span>2</span>）</li>-->
+            <!--<li>哈哈（<span>22</span>）</li>-->
+            <!--<li>哈哈（<span>12</span>）</li>-->
+            <!--<li>哈哈（<span>234</span>）</li>-->
+            <!--<li>哈哈（<span>4</span>）</li>-->
+        <!--</ul>-->
         <div class="type-create">+</div>
         <div class="type-del"></div>
     </div>
@@ -162,34 +164,7 @@
 </div>
 
 <script src="/javascripts/jquery.js"></script>
-<script>
-    var data = [{
-        "book":"前端学习",
-        "type":["Design","Language"],
-        "Design":[{
-            "title":"single page app",
-            "content":"最左侧为笔记本分类列表，支持查看所有笔记或者查看某个笔记本下的所有文章初始时有一个默认分类，进入页面时默认选中默认分类。"
-        },{
-            "title":"get&post",
-            "content":"最左侧为笔记本分类列表，支持查看所有笔记或者查看某个笔记本下的所有文章初始时有一个默认分类，进入页面时默认选中默认分类。"
-        }],
-        "language":[{
-            "title":"ajax",
-            "content":"http请求http是计算机通过网络进行通信的规则http是一种无状态协议：不建立持久的连接，服务端不保留连接"
-        },{
-            "title":"javascript",
-            "content":"要理解闭包，首先必须理解Javascript特殊的变量作用域。"
-        }]
-
-    },{
-        "book":"废纸篓"
-    }];
-
-    localStorage.setItem('data', JSON.stringify(data));
-
-    // 从离线存储中读取出来
-    var redata = JSON.parse(localStorage.getItem('data'));
-    console.log(redata);
-</script>
+<script src="/javascripts/common.js"></script>
+<script src="/javascripts/main.js"></script>
 </body>
 </html>

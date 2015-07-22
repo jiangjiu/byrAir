@@ -56,6 +56,14 @@ html, body {
     color: #fff;
     cursor: pointer;
 }
+.name{
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 15px;
+}
+.drawDown{
+    margin-left:15px;
+}
 .type-create{
     width:28px;
     height:28px;
