@@ -89,6 +89,7 @@ function indexInit() {
     var mainItem = $(".main-list");
     for (var i = 0; i < mainItem.length; i++) {
         mainItem[i].index = i;
+
     }
 }
 function Init() {
@@ -134,7 +135,7 @@ function creatMainItem(name, id) {
 //创建子分类
 function creatChildItem(name, id, mainindex) {
     //不知道这种写法对不对
-    var ele = $(".cate-box").eq(mainindex).find(".drawDown");
+    var ele = $(".cate-box").children().eq(mainindex).find(".drawDown");
     var childItem = $("<div></div>");
     childItem.attr("data-id", id);
     childItem.attr("class", "child-list");
