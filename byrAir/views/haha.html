@@ -1,0 +1,35 @@
+<script>
+    //拼字符串
+
+    function renderTime(start, end, kind, id) {
+        var temp = '<div class="zhjc-datepicker-block"><div class="zhjc-datepicker-frame" id="' + id + '"><ul>';
+        for (var i = start; i <= end; i++) {
+            temp += "<li>" + ((kind == '分' || kind == '时') ? (i = i <= 9 ? '0' + i : i) : i) + " " + kind + "</li>";
+        }
+        temp += '</ul></div></div>';
+        return temp;
+    }
+
+    function htmlInit() {
+        var fragment = document.createDocumentFragment(),
+                temp = $("<div class='zhjc-datepicker-void'></div>")[0];
+        fragment.appendChild(temp);
+        temp = '<div class="zhjc-datepicker-wrap"><div class="zhjc-datepicker-title">'+defaultSettings.year+'年'+defaultSettings.month+'月'+defaultSettings.date+'日'+(defaultSettings.hour<9? '0' + defaultSettings.hour : defaultSettings.hour) +'时'+(defaultSettings.minute<9? '0' + defaultSettings.minute : defaultSettings.minute)+'分</div><div id="datepickerZone">';
+        temp += renderTime(15, 18, '年', 'year');
+        temp += '<p class="zhjc-datepicker-symbol">-</p>';
+        temp += renderTime(1, 12, '月', 'month');
+        temp += '<p class="zhjc-datepicker-symbol">-</p>';
+        temp += renderTime(1, 31, '日', 'date');
+        temp += renderTime(0, 23, '时', 'hour');
+        temp += '<p class="zhjc-datepicker-symbol">:</p>';
+        temp += renderTime(0, 59, '分', 'minute');
+        temp += '</div><div class="zhjc-datepicker-confirm">确 定</div><div class="zhjc-datepicker-cancel">取 消</div></div>';
+        fragment.appendChild($(temp)[0]);
+        document.body.appendChild(fragment);
+    }
+
+
+</script>
+
+
+
