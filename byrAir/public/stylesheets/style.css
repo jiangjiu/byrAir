@@ -44,25 +44,34 @@ html, body {
     color: #666565;
     position:relative;;
 }
-.nav-list {
-    font-size: 15px;
-    font-weight: bold;
+/*.nav-list {*/
+    /*font-size: 15px;*/
+    /*font-weight: bold;*/
+/*}*/
+/*.nav-list li {*/
+    /*padding: 10px 15px;*/
+/*}*/
+/*.nav-active,.nav-list li:hover {*/
+    /*background-color: #313030;*/
+    /*color: #fff;*/
+    /*cursor: pointer;*/
+/*}*/
+.main-list{
+    padding: 10px;
 }
-.nav-list li {
-    padding: 10px 15px;
-}
-.nav-active,.nav-list li:hover {
-    background-color: #313030;
-    color: #fff;
-    cursor: pointer;
+.child-list{
+    height:25px;
+    line-height:25px;
 }
 .name{
     font-size: 15px;
     font-weight: bold;
-    padding: 10px 15px;
 }
 .drawDown{
     margin-left:15px;
+}
+.current{
+    color: #67b8e4;
 }
 .type-create{
     width:28px;

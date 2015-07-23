@@ -1,14 +1,32 @@
 /**
  * Created by zhaojin on 15/7/22.
  */
-var noteArr = new Array();
-var cateArr = new Array();
+var noteArr = [];
+var cateArr = [{
+    id: "index1",
+    name: "FE",
+    configurable: false,
+    parent: null,
+    number: 0
+}, {
+    id: "index2",
+    name: "ECG",
+    configurable: false,
+    parent: null,
+    number: 0
+}, {
+    id: "index3",
+    name: "baidu-ife",
+    configurable: false,
+    parent: null,
+    number: 0
+}];
 var configurable = false;
 
 //分类构造函数
 function Category(name, parent, configurable) {
     var id;
-    id = Data.parse(new Data);
+    id = Date.parse(new Date);
     if (parent == null) {
         this.id = "main" + id;
     } else {
@@ -23,7 +41,7 @@ function Category(name, parent, configurable) {
 //笔记构造函数
 function Note(title, date, content, belongTo) {
     var id;
-    id = Data.parse(new Data);
+    id = Date.parse(new Date);
     this.id = "note" + id;
     this.title = title;
     this.date = date;
@@ -35,18 +53,8 @@ function Note(title, date, content, belongTo) {
 /********系统初始化*********/
 //localstorage初始化
 function storageInit() {
-    console.log(cateArr.length);
-    if (cateArr.length == 0) {
-        cateArr.push({
-            id: "index",
-            name: "默认分类",
-            configurable: false,
-            parent: null,
-            number: 0
-        });
-        console.log(cateArr);
-        localStorage.setItem("categories", JSON.stringify(cateArr));
-    }
+    localStorage.setItem("categories", JSON.stringify(cateArr));
+
 
     var cateObj = JSON.parse(localStorage.getItem("categories"));
     var noteObj = JSON.parse(localStorage.getItem("notes"));
@@ -71,23 +79,28 @@ function storageInit() {
 
 }
 //左侧分类初始化
+function indexInit() {
+    var mainItem = $(".main-list");
+    for (i = 0; i < mainItem.length; i++) {
+        mainItem[i].index = i;
+    }
+}
 function Init() {
     var length = cateArr.length;
-
     var i, j;
     for (i = 0; i < length; i++) {
         if (cateArr[i].parent == null) {
             creatMainItem(cateArr[i].name, cateArr[i].id);
         }
     }
-    var mainItem = $(".nav-list");
-    for (i = 0; i < mainItem.length; i++) {
-        mainItem[i].index = i;
-    }
+    indexInit();
+    var mainItem = $(".main-list");
     for (i = 0; i < length; i++) {
         if (cateArr[i].parent != null) {
             for (j = 0; j < mainItem.length; j++) {
+                console.log(mainItem[j].index);
                 if (cateArr[i].parent == mainItem[j].getAttribute("data-id")) {
+
                     creatChildItem(cateArr.name, cateArr[i].id, mainItem[j].index);
                 }
             }
@@ -96,19 +109,18 @@ function Init() {
 }
 
 
-
 //创建主分类
 function creatMainItem(name, id) {
     var ele = $(".cate-box");
-    var mainItem = "<div></div>";
+    var mainItem = $("<div></div>");
     mainItem.attr("data-id", id);
-    //mainItem.attr("class","main-list");
-    var name = "<div>" + name + "</div>";
+    mainItem.attr("class", "main-list");
+    var name = $("<div>" + name + "</div>");
     name.attr("class", "name");
     var number = 0;
     var span = $("<span>(" + number + ")</span>");
     name.append(span);
-    var drawDown = "<div></div>";
+    var drawDown = $("<div></div>");
     drawDown.attr("class", "drawDown");
     mainItem.append(name);
     mainItem.append(drawDown);
@@ -118,10 +130,10 @@ function creatMainItem(name, id) {
 function creatChildItem(name, id, mainindex) {
     //不知道这种写法对不对
     var ele = $(".cate-box").eq(mainindex).children(".drawDown");
-    var childItem = "<div></div>";
+    var childItem = $("<div></div>");
     childItem.attr("data-id", id);
-    //childItem.attr("class","child-list");
-    var name = "<div>" + name + "</div>";
+    childItem.attr("class", "child-list");
+    var name = $("<div>" + name + "</div>");
     name.attr("class", "name");
     var number = 0;
     var span = $("<span>(" + number + ")</span>");
@@ -130,3 +142,4 @@ function creatChildItem(name, id, mainindex) {
     ele.append(childItem);
 
 }
+
