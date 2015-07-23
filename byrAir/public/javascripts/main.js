@@ -22,6 +22,7 @@ $(".type-create").click(function () {
     console.log(parentItem);
     console.log(parentItem.index);//currentItem.index 涓嶈兘杩欎箞璋冪敤锛?
 //蛤蛤蛤蛤蛤   主席最棒
+    //我们只想昂要空调
     if (parentItem.attr("class") == "main-list") {
         var name = prompt("璇疯緭鍏ュ垎绫诲悕绉?", "鏈懡鍚?");
         var parent = parentItem.attr("data-id");
