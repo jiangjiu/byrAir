@@ -87,8 +87,8 @@ function storageInit() {
 //左侧分类初始化
 function indexInit() {
     var mainItem = $(".main-list");
-    for (i = 0; i < mainItem.length; i++) {
-        mainItem.eq(i).index = i;
+    for (var i = 0; i < mainItem.length; i++) {
+        mainItem[i].index = i;
     }
 }
 function Init() {
@@ -104,10 +104,9 @@ function Init() {
     for (i = 0; i < length; i++) {
         if (cateArr[i].parent != null) {
             for (j = 0; j < mainItem.length; j++) {
-                console.log(mainItem.eq(i).index);
-                if (cateArr[i].parent == mainItem.eq(j).attr("data-id")) {
-
-                    creatChildItem(cateArr.name, cateArr[i].id, mainItem.eq(j).index);
+                if (cateArr[i].parent == mainItem[j].getAttribute("data-id")) {
+                    console.log(mainItem[j].index);
+                    creatChildItem(cateArr[i].name, cateArr[i].id, mainItem[j].index);
                 }
             }
         }
@@ -135,7 +134,7 @@ function creatMainItem(name, id) {
 //创建子分类
 function creatChildItem(name, id, mainindex) {
     //不知道这种写法对不对
-    var ele = $(".cate-box").eq(mainindex).children(".drawDown");
+    var ele = $(".cate-box").eq(mainindex).find(".drawDown");
     var childItem = $("<div></div>");
     childItem.attr("data-id", id);
     childItem.attr("class", "child-list");
