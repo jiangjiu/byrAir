@@ -20,11 +20,10 @@ $(".type-create").click(function () {
     var index;
     indexInit();
     console.log(parentItem);
-    console.log(parentItem.index);//currentItem.index ä¸èƒ½è¿™ä¹ˆè°ƒç”¨ï¼?
-//¸ò¸ò¸ò¸ò¸ò   Ö÷Ï¯×î°ô
-    //ÎÒÃÇÖ»Ïë°ºÒª¿Õµ÷
+    console.log(parentItem.index);//currentItem.index ä¸èƒ½è¿™ä¹ˆè°ƒç”¨ï¿½?
+//womenåªæƒ³è¦ç©ºè°ƒ
     if (parentItem.attr("class") == "main-list") {
-        var name = prompt("è¯·è¾“å…¥åˆ†ç±»åç§?", "æœªå‘½å?");
+        var name = prompt("è¯·è¾“å…¥åˆ†ç±»åï¿½?", "æœªå‘½ï¿½?");
         var parent = parentItem.attr("data-id");
         var index = parentItem.index;
         var newCate = new Category(name, parent, true);
