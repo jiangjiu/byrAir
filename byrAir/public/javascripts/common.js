@@ -20,6 +20,12 @@ var cateArr = [{
     configurable: false,
     parent: null,
     number: 0
+},{
+    id: "childitem",
+    name: "baid",
+    configurable: true,
+    parent: "index3",
+    number: 0
 }];
 var configurable = false;
 
@@ -82,7 +88,7 @@ function storageInit() {
 function indexInit() {
     var mainItem = $(".main-list");
     for (i = 0; i < mainItem.length; i++) {
-        mainItem[i].index = i;
+        mainItem.eq(i).index = i;
     }
 }
 function Init() {
@@ -98,10 +104,10 @@ function Init() {
     for (i = 0; i < length; i++) {
         if (cateArr[i].parent != null) {
             for (j = 0; j < mainItem.length; j++) {
-                console.log(mainItem[j].index);
-                if (cateArr[i].parent == mainItem[j].getAttribute("data-id")) {
+                console.log(mainItem.eq(i).index);
+                if (cateArr[i].parent == mainItem.eq(j).attr("data-id")) {
 
-                    creatChildItem(cateArr.name, cateArr[i].id, mainItem[j].index);
+                    creatChildItem(cateArr.name, cateArr[i].id, mainItem.eq(j).index);
                 }
             }
         }
