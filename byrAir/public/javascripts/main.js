@@ -20,10 +20,10 @@ $(".type-create").click(function () {
     var index;
     indexInit();
     console.log(parentItem);
-    console.log(parentItem.index);//currentItem.index 不能这么调用？
-
+    console.log(parentItem.index);//currentItem.index 不能这么调用�?
+//������   ��ϯ���
     if (parentItem.attr("class") == "main-list") {
-        var name = prompt("请输入分类名称", "未命名");
+        var name = prompt("请输入分类名�?", "未命�?");
         var parent = parentItem.attr("data-id");
         var index = parentItem.index;
         var newCate = new Category(name, parent, true);
