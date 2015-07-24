@@ -19,7 +19,7 @@ Init();
 
 
 
-/**
+/**激活绑定事件：
  找到current类名的对象，移除类名current，找不到会返回空，执行下一步
  增加current类名
  **/
@@ -30,7 +30,11 @@ $(".cate-box").on("click", ".name", function () {
 });
 
 /**
- * 新建笔记本按钮   开始绑定事件
+ * 新建笔记本按钮   开始绑定事件 思路如下：
+ * 1.点击后弹框，没输入名字或者点了取消就给个提示返回
+ * 2.输入有效名字后，保存名字，判断有没有父笔记本，无论是副笔记本还是子笔记本都找到副笔记本索引值并返回
+ * 3.通过拿到的name和父返回值，保存数据至localStorage
+ * 4.传入newcate，html中插入子对象
  * **/
 
 $(".type-create").on("click", function () {
@@ -41,8 +45,8 @@ $(".type-create").on("click", function () {
         return;
     }
     var parIndex = hasParent();
-    if (parIndex == 'none') {
-        alert('创建主笔记功能，敬请期待~~')
+    if (parIndex === false) {
+        alert('先装空调，再写创建主笔记功能！！！')
     } else {
         var parent = $(".cate-box .main-list:last").attr('data-id');
         var newCate = new Category(name, parent, true);
@@ -50,7 +54,6 @@ $(".type-create").on("click", function () {
         localStorage.setItem("categories", JSON.stringify(cateArr));
         creatChildItem(newCate.name, newCate.id, parIndex);
     }
-
 });
 
 /**
@@ -58,7 +61,7 @@ $(".type-create").on("click", function () {
  * **/
 function hasParent(){
     var $cur =  $('.cate-box').find('.current');
-    if($cur.length == 0) return 'none'; //这块儿和后面返回的索引值有些冲突，所以返回值暂时写个none吧
+    if($cur.length == 0) return false;
     var dataId =  $cur.parent().attr('data-id');
     return isParent($cur,dataId);
 }
