@@ -42,7 +42,7 @@ $(".type-create").on("click", function () {
     }
     var parIndex = hasParent();
     if (parIndex == 'none') {
-        //创建主笔记，暂时没这个功能了==！
+        alert('创建主笔记功能，敬请期待~~')
     } else {
         var parent = $(".cate-box .main-list:last").attr('data-id');
         var newCate = new Category(name, parent, true);
