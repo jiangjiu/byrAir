@@ -11,9 +11,6 @@
     <div class="nav">
         <h3>笔记本</h3>
         <ul class="nav-list">
-            <% data.forEach(function(item){%>
-            <li><%=item.type%></li>
-            <% }) %>
             <li class="nav-active">设计（23）</li>
             <li>呵呵（2）</li>
             <li>哈哈（522）</li>
@@ -103,8 +100,11 @@
         <!--<textarea id="edit" cols="30" rows="10"></textarea>-->
     </div>
 </div>
-<script src="javascript/marked.min.js"></script>
-<script src="javascript/jquery-2.1.4.min.js"></script>
+<script src="/javascript/jquery-2.1.4.min.js"></script>
+<script src="/javascript/marked.min.js"></script>
+<script src="/javascript/common.js"></script>
+<script src="/javascript/main.js"></script>
+
 <script>
     $(function () {
         var $content = $('.content-wrap');
