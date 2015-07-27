@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Todo</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+  </head>
+  <body>
+    <h1>ddd</h1>
+
+      <input type="text" name="content" placeholder="内容" id="content" />
+      <input type="text" name="title" placeholder="题目" id="title"/>
+      <input type="text" name="擦" placeholder="类别" id="category"/>
+        <button id="button"></button>
+    <script src="./javascript/jquery-2.1.4.min.js"></script>
+    <script>
+        $(function(){
+            var aa;
+            $('#button').on('click',function(e){
+                e.preventDefault();
+                $.ajax({
+                    url:'/todos',
+                    type:'post',
+                    datatype:'json',
+                    data:{
+                        title:$('#title').val(),
+                        content:$('#content').val(),
+                        category:$('#category').val()
+                    },
+                    success:function(data){
+                        alert('成功添加')
+                        console.log(data)
+                        aa = data;
+                        console.log('第二条的内容：'+data[0].content)
+                    }
+                })
+            });
+        })
+
+
+
+
+    </script>
+  </body>
+</html>
