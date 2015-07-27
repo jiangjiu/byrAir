@@ -13,7 +13,7 @@
         <h3>笔记本</h3>
         <ul class="nav-list">
             <% data.forEach(function(item,index) { %>
-            <li class="category<%= index == 0?'nav-active' + ' ' + item.get('categoryId') : item.get('categoryId') %>"><%= item.get('name') + '（' + item.get('count') + "）" %></li>
+            <li class="<%= index == 0?'nav-active' + ' category'+item.get('categoryId') :'category'+item.get('categoryId') %>"><%= item.get('name') + '（' + item.get('count') + "）" %></li>
             <% }) %>
         </ul>
     </div>
