@@ -30,8 +30,9 @@ module.exports = function (app) {
 
 
     app.get('/getNotes', function (req, res, next) {
+        var cate = req.query.categoryId;
         var query = new AV.Query(Article);
-        query.equalTo("categoryId", req.body.categoryId);
+        query.equalTo("categoryId",cate);
         query.find({
             success: function (results) {
                 res.json(results);
@@ -53,7 +54,7 @@ module.exports = function (app) {
     app.post('/todos', function (req, res, next) {
         var title = req.body.title;
         var content = req.body.content;
-        var category = req.body.category;
+        var category = req.params.category;
         var todo = new Data();
         todo.set('content', content);
         todo.set('title', title);

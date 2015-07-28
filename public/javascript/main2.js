@@ -5,35 +5,46 @@ $(function() {
     var $content = $('.content-wrap');
     $content.html(marked('# Marked in browser\n\nRendered by **marked**.'));
 
-    var categoryId = $('.nav-list').find('li:first-child').attr('class').substr(-1);
+
+    var $navList = $('.nav-list');
+    var categoryId = $navList.find('li:first-child').attr('id').substr(-1);
     var $noteList = $('.note-list');
-    navInit();
-    function navInit() {
+    getNotes(categoryId);
+
+    $navList.on('click','li',function(){
+        $navList.find('.nav-active').removeClass('nav-active');
+        $(this).addClass('nav-active');
+        $noteList.empty();
+        getNotes($(this).attr('id'));
+    });
+
+    function getNotes(id) {
+
         $.ajax({
             url: '/getNotes',
             dateType: 'json',
             type: 'get',
             data: {
-                categoryId: categoryId
+                categoryId: id
             },
             success: function (data) {
-                //appendNotes(data);
+                appendNotes(data);
             }
         });
     }
 
-//    function appendNotes(data){
-//        var html = ejs.render(temNotes,data);
-//console.log(html)
+    function appendNotes(data) {
+        var html = '';
+        data.forEach(function (item) {
+            html += '<li class="note-wrap"><p class="note-title">' + item.title +
+                '</p><p class="note-content">' + item.content + '</p></li>';
+        });
+        $noteList.append(html);
+    }
 
 
-        //data.forEach(function(item){
-        //    html +=  new ejs({url:'note.ejs'}).render({
-        //        title:item.title,
-        //        content:item.content
-        //    });
-        //});
-        //console.log(html)
-        //$noteList.appendChild(html)
-    //}
+
+
+
+
 });
