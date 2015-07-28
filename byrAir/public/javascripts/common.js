@@ -20,7 +20,7 @@ var cateArr = [{
     configurable: false,
     parent: null,
     number: 0
-},{
+}, {
     id: "childitem",
     name: "baid",
     configurable: true,
@@ -106,7 +106,6 @@ function Init() {
         if (cateArr[i].parent != null) {
             for (j = 0; j < mainItem.length; j++) {
                 if (cateArr[i].parent == mainItem[j].getAttribute("data-id")) {
-                    console.log(mainItem[j].index);
                     creatChildItem(cateArr[i].name, cateArr[i].id, mainItem[j].index);
                 }
             }
@@ -148,4 +147,30 @@ function creatChildItem(name, id, mainindex) {
     ele.append(childItem);
 
 }
-
+//删除主分类
+function deleteMain(id) {
+    var newArr = [];
+    for (var i = 0; i < cateArr.length; i++) {
+        if (cateArr[i].id == id || cateArr[i].parent == id) {
+            continue;
+        } else {
+            newArr.push(cateArr[i])
+        }
+    }
+    cateArr = [];
+    for (var j = 0; j < newArr.length; j++) {
+        cateArr[i] = newArr[i];
+    }
+    localStorage.setItem("categories", JSON.stringify(cateArr));
+}
+//删除子分类
+function deleteChild(id) {
+    var newArr = [];
+    for (var i = 0; i < cateArr.length; i++) {
+        if(cateArr[i].id == id){
+            cateArr.splice(i,1);
+            break;
+        }
+    }
+    localStorage.setItem("categories", JSON.stringify(cateArr));
+}
