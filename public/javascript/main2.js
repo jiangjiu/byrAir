@@ -69,10 +69,24 @@ $(function() {
             }
         });
     }
+
+    //新建笔记本的请求，传入title值   string类型
+    function addNav(name) {
+        $.ajax({
+            url: '/addNav',
+            dateType: 'json',
+            type: 'post',
+            data: {
+                name: name
+            },
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    }
     $('.note-create').on('click', function () {
 
 
-    //delNote()
 
     });
 

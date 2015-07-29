@@ -95,18 +95,15 @@ module.exports = function (app) {
 
 
 
-// 新增 Todo 项目
-    app.post('/todos', function (req, res, next) {
-        var title = req.body.title;
-        var content = req.body.content;
-        var category = req.params.category;
-        var todo = new Data();
-        todo.set('content', content);
-        todo.set('title', title);
-        todo.set('category', category);
-        todo.save(null, {
-            success: function (todo) {
-                res.redirect('/todos');
+// 新增笔记本
+    app.post('/addNav', function (req, res, next) {
+        var name = req.body.name;
+        var post = new Category();
+        post.set('name', name);
+        post.set('count', 0);
+        post.save(null, {
+            success: function () {
+                res.json({data:'新建成功'});
             },
             error: function (err) {
                 next(err);
