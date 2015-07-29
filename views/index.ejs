@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>笔记本</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <h3>笔记本</h3>
+        <ul class="nav-list">
+            <% data.forEach(function(item,index) { %>
+            <li id="<%=item.get('categoryId')%>" class="<%= index == 0?'nav-active'  :'' %>"><%= item.get('name') + '（' + item.get('count') + "）" %></li>
+            <% }) %>
+        </ul>
+    </div>
+    <div class="note">
+        <div class="note-head">
+            <h3>笔记</h3>
+            <a class="note-create">新建笔记</a>
+        </div>
+        <ul class="note-list">
+            <!--<li class="note-wrap note-active">-->
+                <!--<p class="note-title">图片排版与字体排版</p>-->
+                <!--<p class="note-content">-->
+                    <!--啊哈哈哈阿飞嘎嘎是，的风格的风格的风格大方，士大夫沙发上地方，时代嘎是，的风格的风格的风格大方，士大夫沙发上地方，时代嘎是，的风格的风格的风格大方，士大夫沙发上地方，时代发生的发生的，发AEFSDF-->
+                    <!--SFASFDSD FSDF SD-->
+                    <!--SDFSDFSASDF-->
+                <!--</p>-->
+            <!--</li>-->
+            <!--<li class="note-wrap">-->
+                <!--<p class="note-title">图片排版与字体排版</p>-->
+                <!--<p class="note-content">-->
+                    <!--啊哈哈哈阿飞嘎嘎是，的风格的风格的风格大方，士大夫沙发嘎是，的风格的风格的风格大方，士大夫沙发上地方，时代嘎是，的风格的风格的风格大方，士大夫沙发上地方，时代上地方，时代发生的发生的，发AEFSDFSF-->
+                    <!--ASFDSDFSDFSD-->
+                    <!--SDFSDFSASDF-->
+                <!--</p>-->
+            <!--</li>-->
+        </ul>
+    </div>
+    <div class="content">
+        <h3>图片排版与字体排版</h3>
+
+        <div class="content-wrap"># Marked in browser\n\nRendered by **marked**.</div>
+        <!--<textarea id="edit" cols="30" rows="10"></textarea>-->
+    </div>
+</div>
+<script src="/javascript/marked.min.js"></script>
+<script src="/javascript/jquery-2.1.4.min.js"></script>
+<!--<script src="/javascript/common.js"></script>-->
+<script src="/javascript/main2.js"></script>
+</body>
+</html>

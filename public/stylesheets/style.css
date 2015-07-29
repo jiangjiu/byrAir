@@ -1,0 +1,150 @@
+html, body, h1, h2, h3, p, form, ul, ol, li, dl, dt, dd, form {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+html, body {
+    font: 12px/1 "Microsoft Yahei","微软雅黑","黑体","SimHei",Arial,sans-serif;
+    color: #2E2E2E;
+    height: 100%;
+}
+
+.container {
+    display: -webkit-flex;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+}
+
+.nav{
+    flex: 1;
+    background-color: #666666;
+}
+.note{
+    flex: 2.5;
+    background-color: #f9f9f9;
+}
+.content {
+    flex: 4;
+    background-color: #fff;
+}
+.container h3{
+    font-size: 28px;
+    text-align: center;
+    padding: 60px 0;
+    font-weight: 400;
+}
+
+/********************左侧nav栏**************************/
+.nav {
+    color: #CCCCCC;
+}
+.nav-list {
+    font-size: 15px;
+    font-weight: bold;
+    overflow: auto;
+    height: 510px;
+}
+.nav-list li {
+    padding: 10px 15px;
+}
+.nav-active,.nav-list li:hover {
+    background-color: #313030;
+    color: #fff;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+}
+
+/********************中间笔记栏**************************/
+.note-head {
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+}
+.note h3 {
+    display: inline-flex;
+    padding-left: 50px;
+    flex: 3;
+    color: #c6c6c6;
+}
+.note-create {
+    background-color: #f44336;
+    border-color: #d43f3a;
+    color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12);
+    line-height: 28px;
+    border-radius: 3px;
+    margin: 0 20px;
+    display: inline-flex;
+    padding: 5px 10px;
+    flex: 1;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color .2s ease,box-shadow .28s cubic-bezier(.4,0,.2,1);;
+}
+.note-create:hover {
+    background-color: #FF6666;
+    box-shadow: 0 1px 6px rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+}
+.note-list {
+    overflow: auto;
+    height: 450px;
+}
+.note-wrap {
+    margin: 5px 15px;
+    padding:5px;
+}
+.note-active, .note-wrap:hover{
+    border: 1px solid #FF6666;
+    padding:4px;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 1px 6px 0 rgba(0,0,0,.12),0 1px 6px 0 rgba(0,0,0,.12);
+}
+.note-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #666666;
+    padding: 5px;
+}
+.note-content{
+    position: relative;
+    color: #797979;
+    padding: 5px;
+    font-size: 13px;
+    line-height: 18px;
+    height:48px;
+    overflow:hidden;
+}
+.note-content:after {
+    content:"...";
+    font-weight:bold;
+    position:absolute;
+    bottom:0;
+    right:0;
+    padding:0 20px 1px 45px;
+    background:url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png) repeat-y;
+}
+/********************右侧显示栏**************************/
+.content h3{
+    background-color: #FF6666;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    color: #fff;
+}
+.content-wrap {
+    padding: 20px;
+    overflow: auto;
+    font-size: 13px;
+    line-height: 18px;
+    color: #797979;
+    height: 410px;
+}
