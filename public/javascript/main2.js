@@ -19,11 +19,10 @@ $(function() {
     });
 
     function getNotes(id) {
-
         $.ajax({
             url: '/getNotes',
             dateType: 'json',
-            type: 'get',
+            type: 'post',
             data: {
                 categoryId: id
             },
@@ -41,10 +40,41 @@ $(function() {
         });
         $noteList.append(html);
     }
+    //删除笔记本和旗下所有笔记的请求，传入id   string类型
+    function delNav(id) {
+        $.ajax({
+            url: '/delNav',
+            dateType: 'json',
+            type: 'post',
+            data: {
+                categoryId: id
+            },
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    }
+
+    //删除单个笔记的请求，传入title值   string类型
+    function delNote(title) {
+        $.ajax({
+            url: '/delNote',
+            dateType: 'json',
+            type: 'post',
+            data: {
+                title: title
+            },
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    }
+    $('.note-create').on('click', function () {
 
 
+    //delNote()
 
-
+    });
 
 
 });
