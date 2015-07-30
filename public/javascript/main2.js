@@ -83,20 +83,11 @@ $(function () {
     }
 /****************************删除笔记本********************************/
     $(".type-del").on("click", function () {
-        $navList.find('.nav-active');
-        if (className == "main-list") {
-            confirm("确认删除当前主分类");
-            $cur.parent().remove();
-            $(".note-list").html("");
-            var id = $cur.parent().attr("data-id");
-            deleteMain(id);
-        } else {
-            confirm("确认删除当前子分类");
-            $cur.parent().remove();
-            $(".note-list").html("");
-            var id = $cur.parent().attr("data-id");
-            deleteChild(id);
-        }
+        $cur = $navList.find('.nav-active');
+        confirm("确认删除当前笔记本");
+        $cur.remove();
+        $noteList.empty();
+        delNav($cur.attr('id'));
     });
 
     //删除笔记本和旗下所有笔记的请求，传入id   string类型
