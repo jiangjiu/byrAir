@@ -7,7 +7,7 @@ $(function () {
 
 
     var $navList = $('.nav-list');
-    var categoryId = $navList.find('li:first-child').attr('id').substr(-1);
+    var categoryId = $navList.find('li:first-child').attr('id');
     var $noteList = $('.note-list');
     getNotes(categoryId);
 
@@ -112,7 +112,8 @@ $(function () {
             dateType: 'json',
             type: 'post',
             data: {
-                title: title
+                title: title,
+                categoryId:categoryId
             },
             success: function (data) {
                 console.log(data)
@@ -123,7 +124,7 @@ $(function () {
 
     $('.note-create').on('click', function () {
 
-
+        delNote('发生地方')
     });
 
 
