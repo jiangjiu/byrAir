@@ -70,11 +70,15 @@ module.exports = function (app) {
         })
     });
 
-    //通过title删除笔记
+    //通过title删除笔记 同时笔记本count-1
     app.post('/delNote', function (req, res, next) {
         var title = req.body.title;
+        var cate = req.body.categoryId;
+        cate = parseInt(cate);
         var queryArt = new AV.Query(Article);
         queryArt.equalTo("title",title);
+        var query = new AV.Query(Category);
+        query.equalTo("categoryId",cate);
         queryArt.destroyAll({
             success: function () {
                 res.json({data:'删除成功'});
@@ -82,17 +86,18 @@ module.exports = function (app) {
             error: function(todo, err) {
                 res.redirect('/todos?status=' + status + '&errMsg=' + JSON.stringify(err))
             }
+        }).then(function(){
+            query.find({
+                success:function(category){
+                    var count = category[0].get('count');
+                    category[0].set('count',count-1);
+                    category[0].save();
+                },
+                error:function(){
+                }
+            })
         })
     });
-
-
-
-
-
-
-
-
-
 
 
 // 新增笔记本
@@ -109,5 +114,38 @@ module.exports = function (app) {
                 next(err);
             }
         })
-    })
+    });
+
+
+    // 新建笔记   拿到title,content,categoryId 三个值
+    app.post('/addNote', function (req, res, next) {
+        var title = req.body.title;
+        var content = req.body.content;
+        var cate = req.body.categoryId;
+        cate = parseInt(cate);
+        var post = new Article();
+        var query = new AV.Query(Category);
+        query.equalTo("categoryId",cate);
+        post.set('title', title);
+        post.set('content', content);
+        post.set('categoryId', cate);
+        post.save(null, {
+            success: function () {
+                res.json({data:'新建成功'});
+            },
+            error: function (err) {
+                next(err);
+            }
+        }).then(function(){
+            query.find({
+                success:function(category){
+                    var count = category[0].get('count');
+                    category[0].set('count',count+1);
+                    category[0].save();
+                },
+                error:function(){
+                }
+            })
+        })
+    });
 };

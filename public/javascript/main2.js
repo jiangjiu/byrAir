@@ -7,7 +7,7 @@ $(function () {
 
 
     var $navList = $('.nav-list');
-    var categoryId = $navList.find('li:first-child').attr('id').substr(-1);
+    var categoryId = $navList.find('li:first-child').attr('id');
     var $noteList = $('.note-list');
     getNotes(categoryId);
 
@@ -105,14 +105,15 @@ $(function () {
         });
     }
 
-    //删除单个笔记的请求，传入title值   string类型
-    function delNote(title) {
+    //删除单个笔记的请求，同时主笔记本的count会-1，   传入title值 categoryId值  string类型
+    function delNote(title,categoryId) {
         $.ajax({
             url: '/delNote',
             dateType: 'json',
             type: 'post',
             data: {
-                title: title
+                title: title,
+                categoryId:categoryId
             },
             success: function (data) {
                 console.log(data)
@@ -120,9 +121,23 @@ $(function () {
         });
     }
 
-
+    //新建单个笔记的请求，同时主笔记本的count+1     传入title，content，categoryId， string类型
+    function addNote(title,content,categoryId) {
+        $.ajax({
+            url: '/addNote',
+            dateType: 'json',
+            type: 'post',
+            data: {
+                title: title,
+                content: content,
+                categoryId:categoryId
+            },
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    }
     $('.note-create').on('click', function () {
-
 
     });
 
