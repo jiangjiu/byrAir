@@ -76,8 +76,8 @@ module.exports = function (app) {
         var cate = req.body.categoryId;
         cate = parseInt(cate);
         var queryArt = new AV.Query(Article);
-        var query = new AV.Query(Category);
         queryArt.equalTo("title",title);
+        var query = new AV.Query(Category);
         query.equalTo("categoryId",cate);
         queryArt.destroyAll({
             success: function () {
@@ -114,17 +114,21 @@ module.exports = function (app) {
                 next(err);
             }
         })
-    })
+    });
 
 
     // 新建笔记   拿到title,content,categoryId 三个值
     app.post('/addNote', function (req, res, next) {
         var title = req.body.title;
         var content = req.body.content;
-        var categoryId = req.body.categoryId;
-        var post = new Category();
+        var cate = req.body.categoryId;
+        cate = parseInt(cate);
+        var post = new Article();
+        var query = new AV.Query(Category);
+        query.equalTo("categoryId",cate);
         post.set('title', title);
         post.set('content', content);
+        post.set('categoryId', cate);
         post.save(null, {
             success: function () {
                 res.json({data:'新建成功'});
@@ -132,6 +136,16 @@ module.exports = function (app) {
             error: function (err) {
                 next(err);
             }
+        }).then(function(){
+            query.find({
+                success:function(category){
+                    var count = category[0].get('count');
+                    category[0].set('count',count+1);
+                    category[0].save();
+                },
+                error:function(){
+                }
+            })
         })
     });
 };
