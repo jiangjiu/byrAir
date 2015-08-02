@@ -117,7 +117,7 @@ module.exports = function (app) {
     });
 
 
-    // 新建笔记   拿到title,content,categoryId 三个值
+    // 新建笔记   拿到title,content,categoryId 三个值 同时主笔记本count+1
     app.post('/addNote', function (req, res, next) {
         var title = req.body.title;
         var content = req.body.content;
@@ -146,6 +146,26 @@ module.exports = function (app) {
                 error:function(){
                 }
             })
+        })
+    });
+
+    // 更新笔记   拿到title,content,categoryId 三个值
+    app.post('/updateNote', function (req, res, next) {
+        var title = req.body.title;
+        var newTitle = req.body.newTitle;
+        var content = req.body.content;
+        var cate = req.body.categoryId;
+        cate = parseInt(cate);
+        var queryArt = new AV.Query(Article);
+        queryArt.equalTo("categoryId",cate);
+        queryArt.equalTo("title",title);
+        queryArt.find({
+            success: function (data) {
+                data[0].set('title',newTitle);
+                data[0].set('content',content);
+                data[0].save();
+                res.json({data:'更新成功！'})
+            }
         })
     });
 };

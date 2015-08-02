@@ -137,8 +137,27 @@ $(function () {
             }
         });
     }
-    $('.note-create').on('click', function () {
 
+    //更新笔记     传入title，newTitle,content，categoryId， string类型
+    function updateNote(title,newTitle,content,categoryId) {
+        $.ajax({
+            url: '/updateNote',
+            dateType: 'json',
+            type: 'post',
+            data: {
+                title: title,
+                newTitle: newTitle,
+                content: content,
+                categoryId:categoryId
+            },
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    }
+    $('.note-create').on('click', function () {
+        //更新实例
+        //updateNote('haha去','haha','fsdsdfsdfdfsdfsfsdf','20')
     });
 
 
