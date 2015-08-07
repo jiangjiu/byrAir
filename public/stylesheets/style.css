@@ -21,11 +21,17 @@ html, body {
 .nav {
     flex: 1;
     background-color: #666666;
+    z-index: 5;
+    -webkit-box-shadow:3px 0 6px 0 rgba(0,0,0,.22);
+    box-shadow: 3px 0 6px 0 rgba(0,0,0,.22);
 }
 
 .note {
     flex: 2.5;
     background-color: #f9f9f9;
+    z-index: 4;
+    -webkit-box-shadow:2px 0 6px 0 rgba(0,0,0,.12);
+    box-shadow: 2px 0 6px 0 rgba(0,0,0,.12);
 }
 
 .content {
