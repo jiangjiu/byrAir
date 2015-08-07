@@ -31,6 +31,7 @@ module.exports = function (app) {
 //通过categoryId取得笔记
     app.post('/getNotes', function (req, res, next) {
         var cate = req.body.categoryId;
+        if(cate == '') return;
         cate = parseInt(cate);
         var query = new AV.Query(Article);
         query.equalTo("categoryId",cate);
@@ -54,6 +55,7 @@ module.exports = function (app) {
     //通过categoryId删除笔记本,同时笔记本内相应的笔记也会全部删除
     app.post('/delNav', function (req, res, next) {
         var cate = req.body.categoryId;
+        if(cate == '') return;
         cate = parseInt(cate);
         var query = new AV.Query(Category);
         var queryArt = new AV.Query(Article);
@@ -74,6 +76,7 @@ module.exports = function (app) {
     app.post('/delNote', function (req, res, next) {
         var title = req.body.title;
         var cate = req.body.categoryId;
+        if(cate == '' && title == '') return;
         cate = parseInt(cate);
         var queryArt = new AV.Query(Article);
         queryArt.equalTo("title",title);
@@ -103,6 +106,7 @@ module.exports = function (app) {
 // 新增笔记本
     app.post('/addNav', function (req, res, next) {
         var name = req.body.name;
+        if(name == '') return;
         var post = new Category();
         post.set('name', name);
         post.set('count', 0);
@@ -122,6 +126,7 @@ module.exports = function (app) {
         var title = req.body.title;
         var content = req.body.content;
         var cate = req.body.categoryId;
+        if(cate == '' && title == '') return;
         cate = parseInt(cate);
         var post = new Article();
         var query = new AV.Query(Category);
@@ -155,6 +160,7 @@ module.exports = function (app) {
         var newTitle = req.body.newTitle;
         var content = req.body.content;
         var cate = req.body.categoryId;
+        if (title == '' && newTitle == '' && cate == '') return;
         cate = parseInt(cate);
         var queryArt = new AV.Query(Article);
         queryArt.equalTo("categoryId",cate);
