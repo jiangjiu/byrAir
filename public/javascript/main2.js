@@ -3,7 +3,11 @@
  */
 $(function () {
     var $content = $('.content-wrap');
-    $content.html(marked('# Marked in browser\n\nRendered by **marked**.'));
+    //$content.html(marked('# Marked in browser\n\nRendered by **marked**.'));
+    var $contentTitle = $('.content-title');
+    $contentTitle.html(marked(''));
+    var $contentInner = $('.content-inner');
+    $contentInner.html(marked(''));
 
 
     var $navList = $('.nav-list');
@@ -18,14 +22,6 @@ $(function () {
         getNotes($(this).attr('id'));
     });
 
-    $noteList.on('click', 'li', function () {
-        $noteList.find('.note-active').removeClass('note-active');
-        $(this).addClass('note-active');
-        $('.content-wrap').empty();
-        var html = '';
-        var html = $(this).find('.note-title').html() + '<br>' + $(this).find('.note-content').html();
-        $('.content-wrap').append(html);
-    });
     function getNotes(id) {
         $.ajax({
             url: '/getNotes',
@@ -46,9 +42,10 @@ $(function () {
             html += '<li class="note-wrap"><p class="note-title">' + item.title +
                 '</p><p class="note-content">' + item.content + '</p></li>';
         });
-        $noteList.append(html);
+        $noteList.prepend(html);
     }
-/*****************************添加笔记本**********************************/
+
+    /*****************************添加笔记本**********************************/
     $(".type-create").on("click", function () {
         var name = prompt("请输入分类名", "未分类");
         if (name == null) return;//null和“”的区别在哪里？？？？？
@@ -57,9 +54,9 @@ $(function () {
             return;
         }
         addNav(name);
+        appendBook(name);
 
     });
-
     //新建笔记本的请求，传入title值   string类型
     function addNav(name) {
         $.ajax({
@@ -71,17 +68,18 @@ $(function () {
             },
             success: function (data) {
                 console.log(data);
-                appendBook(data);
             }
         });
     }
 
-    function appendBook(data) {
+    function appendBook(name) {
         var html = '';
-        html = '<li id="' + data.categoryId + '">' + data.name + '(<span class="number">' + data.count + '</span>)</li>';
-        $navList.append(html);
+        //html = '<li id="' + data.categoryId + '">' + data.name + '(<span class="number">' + data.count + '</span>)</li>';
+        html = '<li>' + name + '(<span class="number">' + 0 + '</span>)</li>';
+        $navList.prepend(html);
     }
-/****************************删除笔记本********************************/
+
+    /****************************删除笔记本********************************/
     $(".type-del").on("click", function () {
         $cur = $navList.find('.nav-active');
         confirm("确认删除当前笔记本");
@@ -105,24 +103,34 @@ $(function () {
         });
     }
 
-    //删除单个笔记的请求，同时主笔记本的count会-1，   传入title值 categoryId值  string类型
-    function delNote(title,categoryId) {
-        $.ajax({
-            url: '/delNote',
-            dateType: 'json',
-            type: 'post',
-            data: {
-                title: title,
-                categoryId:categoryId
-            },
-            success: function (data) {
-                console.log(data)
-            }
-        });
-    }
 
+    /**********************************新建笔记***********************************/
+    //显示笔记内容
+    $noteList.on('click', 'li', function () {
+        $noteList.find('.note-active').removeClass('note-active');
+        $(this).addClass('note-active');
+        var title = $(this).find('.note-title').html();
+        var inner = $(this).find('.note-content').html();
+        $contentTitle.val(title);
+        $contentInner.val(inner);
+    });
+
+    //新建笔记
+    $('.note-create').on('click', function () {
+        var nowCate = $navList.find('.nav-active').attr('id');
+        var title = $contentTitle.val();
+        var content  = $contentInner.val();
+        var html = ''
+        html = '<li class="note-wrap note-active"><p class="note-title">' + "无标题" +
+            '</p><p class="note-content"></p></li>';
+        $noteList.prepend(html);
+        //addNote(title,content,nowCate);
+
+        //更新实例
+        //updateNote('haha去','haha','fsdsdfsdfdfsdfsfsdf','20')
+    });
     //新建单个笔记的请求，同时主笔记本的count+1     传入title，content，categoryId， string类型
-    function addNote(title,content,categoryId) {
+    function addNote(title, content, categoryId) {
         $.ajax({
             url: '/addNote',
             dateType: 'json',
@@ -130,7 +138,7 @@ $(function () {
             data: {
                 title: title,
                 content: content,
-                categoryId:categoryId
+                categoryId: categoryId
             },
             success: function (data) {
                 console.log(data)
@@ -139,7 +147,7 @@ $(function () {
     }
 
     //更新笔记     传入title，newTitle,content，categoryId， string类型
-    function updateNote(title,newTitle,content,categoryId) {
+    function updateNote(title, newTitle, content, categoryId) {
         $.ajax({
             url: '/updateNote',
             dateType: 'json',
@@ -148,17 +156,29 @@ $(function () {
                 title: title,
                 newTitle: newTitle,
                 content: content,
-                categoryId:categoryId
+                categoryId: categoryId
             },
             success: function (data) {
                 console.log(data)
             }
         });
     }
-    $('.note-create').on('click', function () {
-        //更新实例
-        //updateNote('haha去','haha','fsdsdfsdfdfsdfsfsdf','20')
-    });
+
+    //删除单个笔记的请求，同时主笔记本的count会-1，   传入title值 categoryId值  string类型
+    function delNote(title, categoryId) {
+        $.ajax({
+            url: '/delNote',
+            dateType: 'json',
+            type: 'post',
+            data: {
+                title: title,
+                categoryId: categoryId
+            },
+            success: function (data) {
+                console.log(data)
+            }
+        });
+    }
 
 
 });

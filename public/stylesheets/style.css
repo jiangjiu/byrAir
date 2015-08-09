@@ -162,15 +162,15 @@ html, body {
     overflow: hidden;
 }
 
-.note-content:after {
-    content: "...";
-    font-weight: bold;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 0 20px 1px 45px;
-    background: url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png) repeat-y;
-}
+/*.note-content:after {*/
+    /*content: "...";*/
+    /*font-weight: bold;*/
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*right: 0;*/
+    /*padding: 0 20px 1px 45px;*/
+    /*background: url(http://css88.b0.upaiyun.com/css88/2014/09/ellipsis_bg.png) repeat-y;*/
+/*}*/
 
 /********************右侧显示栏**************************/
 .content h3 {
@@ -187,6 +187,26 @@ html, body {
     font-size: 13px;
     line-height: 18px;
     color: #797979;
-    height: 410px;
+    height: 500px;
 }
 
+.content-title {
+    width: 92%;
+    display: block;
+    border: 1px solid #797979;
+    height: 30px;
+    font-size: 20px;
+    line-height: 30px;
+    text-indent: 1em;
+}
+
+.content-inner {
+    display: block;
+    border: 1px solid #797979;
+    resize:none;
+    margin-top: 20px;
+    padding: 10px;
+    min-height: 80%;
+    min-width: 90%;
+    font-size: 14px;
+}
