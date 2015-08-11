@@ -9,6 +9,7 @@ require.config({
 });
 require(['jquery','marked'],function($,marked){
     $(function () {
+
         var $content = $('.content-wrap');
         $content.html(marked('# Marked in browser\n\nRendered by **marked**.'));
         var $contentTitle = $('.content-title');
